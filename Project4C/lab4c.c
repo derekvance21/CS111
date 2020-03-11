@@ -4,6 +4,7 @@ EMAIL: dvance@g.ucla.edu
 ID: 604970765
 */
 
+// THIS IS FOR LAB 4.
 
 #include <stdio.h>
 #include <getopt.h>
