@@ -1,0 +1,25 @@
+NAME: DEREK VANCE
+EMAIL: dvance@g.ucla.edu
+ID: 604970765
+
+lab1b-client.c - source code for client end.
+    Has the following options:
+        --port= : required option that specifies port number to create socket on
+        --log= : option to create logfile which records all data passed over the socket
+        --compress : option to compress data before sending over socket and decompress data upon receiving
+
+lab1b-server.c - source code for server end.
+    Has the following options:
+        --port= : required option that specifices port number to create socket on
+        --compress : option to compress data before sending over socket and decompress data upon receiving
+
+Makefile - make file
+    make - creates executables lab1b-client and lab1b-server from above two source codes
+    make dist - creates tar.gz from lab1b-client.c, lab1b-server.c, README, and Makefile
+    make clean - deletes tar.gz file and executables from working directory
+    make client - creates executable lab1b-client from lab1b-client.c
+    make server - creates exectuable lab1b-server from lab1b-server.c
+
+Sources
+    zlib tutorial - https://www.zlib.net/zlib_how.html
+    socket programming tutorial - http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/socket.html

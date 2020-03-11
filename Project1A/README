@@ -1,0 +1,11 @@
+NAME: Derek Vance
+EMAIL: dvance@g.ucla.edu
+ID: 604970765
+
+lab1.c - source code for a terminal emulator.
+    Has option --shell which creates shell process that takes input from terminal and outputs back to terminal
+
+Makefile - make file
+    make - creates executable lab1a from lab1.c
+    make dist - creates tar.gz from lab1.c, README, and Makefile
+    make clean - deletes tar.gz file and lab1a executable from working directory

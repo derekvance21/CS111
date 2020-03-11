@@ -1,0 +1,73 @@
+NAME: Derek Vance
+EMAIL: dvance@g.ucla.edu
+UID: 604970765
+
+Question 2.1.1
+    Why does it take many iterations before errors are seen?
+        It requires many iterations before errors are seen because the scheduler needs to context switch at the
+        perfect time to cause a race condition. If the add function is executed atomically by the scheduler, 
+        i.e. the scheduler never context switches on a time slice interrupt to another thread before the new 
+        value is stored back into the counter, then no errors will be seen. However, after enough iterations, 
+        this will occur.
+    Why does a significantly smaller number of iterations so seldom fail?
+        Probabilistically, it's going to take a while for a context switch caused by a time slice interrupt 
+        to occur in exactly the wrong place, i.e. before the new value is stored back into counter. With many 
+        iterations, the individual threads have to loop many many times, calling add() twice, and a context 
+        switch which causes a race condition is thus more likely to happen.
+
+Question 2.1.2
+    Why are the --yield runs so much slower?
+        The --yield runs are so much slower because opt_yield being 1 is causing a context switch on every 
+        iteration, of which there is a considerable cost of overhead involved.
+    Where is the additional time going?
+        The additional time is going to context switching between threads. Instead of running a single thread 
+        per time slice without context switching, we perform a context switch on every iteration.
+    Is it possible to get valid per-operation timings if we are using the --yield option?
+        Yes
+    If so, explain how. If not, explain why not. 
+        You could get valid per-operation timings when using the --yield option if you changed the clk_id 
+        argument in clock_gettime. Right now, it is set to CLOCK_REALTIME, which is the system-wide realtime 
+        clock. However, you could have each thread store its own time using the clk_id of 
+        CLOCK_THREAD_CPUTIME_ID, sum them at the end, then divide by the number of operations. The latter clk_id 
+        measures the amount of time the thread spends on the CPU, so you could get an valid measure of the 
+        per-operation timings.
+
+Question 2.1.3
+    Why does the average cost per operation drop with increasing iterations?
+        The average cost per operation drops with increasing iterations because of the lesser amount of 
+        contribution that overhead costs make to the average cost per operation. It takes time to create 
+        and join threads, so the less proportion those costs contribute to the total time, the less they will 
+        contribute to the average cost per operation.
+    If the cost per iteration is a function of the number of iterations, how do we know how many iterations to 
+    run (or what the "correct" cost is)?
+        The cost per iteration will converge to a minimum as the overheads associated with creating and joining 
+        threads contribute less and less to the overall time. Thus, we know the "correct" cost after increasing 
+        the number of iterations to the point where they will no longer decrease.
+
+Question 2.1.4
+    Why do all of the options perform similarly for low numbers of threads?
+        The options perform similarly for low numbers of threads because the costs of switching or handling 
+        multiple locks is so low.
+    Why do the three protected operations slow down as the number of threads rises?
+        The three protected operations slow down for greater number of threads because of the costs of 
+        maintaining the locking mechanisms increases with greater threads. For example, with the spin lock, the 
+        processor just waits, spinning until a time slice context switches. With greater threads, more and more 
+        of the threads running on the processor will just be spending time spinning until a context switch to 
+        the thread that possesses the lock allows actual work to be done.
+
+Question 2.2.1
+    Compare the variation in time per mutex-protected operation vs the number of threads in Part-1 (adds) and 
+    Part-2 (sorted lists).
+        For Part-1 (adds), as the number of threads increases, the test and set spin lock scales the worst, 
+        followed by mutex and then CAS. For Part-2 (sorted lists), as the number of thread increases, mutex 
+        scales the best, followed by test and set spin lock, but not by much.
+    Comment on the general shapes of the curves, and explain why they have this shape.
+        The curves have a decelerating positive slope, which shows that the costs per operation are increasing 
+        with greater numbers of threads. The greater number of threads produce more overhead costs, until the 
+        situation described in the below question.
+    Comment on the relative rates of increase and differences in the shapes of the curves, and offer an 
+    explanation for these differences. 
+        The slopes are flattening out, as the increases in number of operations are catching up to the increased 
+        costs of overhead caused by having more threads. The type of lock that isn't flattening out very much is 
+        the test and set spin lock. With more and more threads, there will be more and more threads that keep 
+        spinning until a time slice interrupt, so the cost per operation keeps increasing.

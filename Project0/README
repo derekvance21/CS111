@@ -1,0 +1,18 @@
+NAME: Derek Vance
+EMAIL: dvance@g.ucla.edu
+ID: 604970765
+
+The included files are as follows:
+lab0.c - source code
+Makefile - with options to build the program (make), remove files created by the makefile (make clean),
+    build the tarball (make dist), and test the functionality (make check)
+backtrace.png - shows a segfault and associated stack-trace
+breakpoint.png - shows a breakpoint and inspection of NULL pointer variable
+README - information about the included files
+
+The included smoke-test cases used in make check are as follows:
+segfault_check - causes a segfault with catch enabled and checks proper exit code and stderr output
+input_check - uses --input with a nonexistent file and checks proper exit code and stderr output
+input_output_check - uses the program correctly and checks proper exit code and input/output equivalency
+output_check - uses --output with an unwritable file and checks proper exit code and stderr output
+option_check - uses the program with a nonexistent option and invalid argument and checks proper exit code and stderr output

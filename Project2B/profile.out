@@ -1,0 +1,8 @@
+Total: 541 samples
+     423  78.2%  78.2%      541 100.0% thread_func_s
+      59  10.9%  89.1%       59  10.9% SortedList_lookup
+      58  10.7%  99.8%       58  10.7% SortedList_insert
+       1   0.2% 100.0%        1   0.2% 0x00007ffea7bd8925
+       0   0.0% 100.0%      541 100.0% ?? /usr/src/debug////////glibc-2.17-c758a686/misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:111
+       0   0.0% 100.0%        1   0.2% __GI___clock_gettime
+       0   0.0% 100.0%      541 100.0% start_thread

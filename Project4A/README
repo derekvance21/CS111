@@ -1,0 +1,19 @@
+NAME: Derek Vance
+EMAIL: dvance@g.ucla.edu
+ID: 604970765
+
+tarball contains:
+my_beaglebone.jpg 
+
+connected.png 
+    - screenshot showing USB connection and configuring of network access
+copy.png 
+    - screenshot showing successful copy of hello world program to BeagleBone over WIFI
+build_run.png 
+    - screenshot showing successful running of hello world program on BeagleBone over WIFI
+git.png 
+    - screenshot showing installation of git and cloning of a repository
+Makefile 
+    - Makefile to build tarball
+README
+    - description of contents of tarball

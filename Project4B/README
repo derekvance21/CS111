@@ -1,0 +1,16 @@
+NAME: Derek Vance
+EMAIL: dvance@g.ucla.edu
+ID: 604970765
+
+The files included are as follows:
+
+	Makefile - Makefile with the following targets:
+		default: builds the executable lab4b using lab4b.c source code
+		check: quick smoke test to test if lab4b can handle all options and basic stdin command
+		clean: removes executable and tarball from pwd
+		dist: builds tarball lab4b-604970765.tar.gz
+
+	lab4b.c - source code to build the executable; includes the following options:
+		--scale - changes the scale to Farenheit or Celsius, Farenheit by default
+		--period - changes the number of seconds between samples. By default: 1
+		--log - specifies a file to log samples and console commands to
