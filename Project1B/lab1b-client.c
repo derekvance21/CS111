@@ -245,7 +245,7 @@ int main(int argc, char **argv)
     struct hostent *server;
 
     unsigned char buffer[256];
-    char tBuffer[tBufferSize];
+    unsigned char tBuffer[tBufferSize];
     
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) 
