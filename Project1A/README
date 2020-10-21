@@ -1,6 +1,6 @@
 NAME: Derek Vance
 EMAIL: dvance@g.ucla.edu
-ID: 604970765
+ID: 
 
 lab1.c - source code for a terminal emulator.
     Has option --shell which creates shell process that takes input from terminal and outputs back to terminal
